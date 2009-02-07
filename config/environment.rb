@@ -76,3 +76,4 @@ Rails::Initializer.run do |config|
 end
 
 AVAILABLE_LANGUAGES = ['en', 'ja']
+DEFAULT_USER = 'greasepig'

@@ -3,6 +3,7 @@ en:
   unauthorized_action: "Unauthorized Action"
   user: "User"
   password: "Password"
+  delete: "[X]"
   activerecord: 
     models: 
       entry: "Entry"

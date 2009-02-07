@@ -5,6 +5,7 @@ class KController < ApplicationController
          :except => [:l, :authenticate]
   def l
     if check_cookie
+      session[:user] = DEFAULT_USER
       redirect_to :action => :e
     end
   end
@@ -32,6 +33,12 @@ class KController < ApplicationController
   end
 
   def delete
+    begin
+      entry = Entry.find(params[:id])
+      entry.destroy
+    rescue ActiveRecord::RecordNotFound
+    end
+    render :nothing => true, :layout => false
   end
 
   def search

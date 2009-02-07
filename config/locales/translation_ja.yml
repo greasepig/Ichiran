@@ -3,6 +3,7 @@ ja:
   unauthorized_action: "不正アクセス"
   user: "ユーザ"
   password: "暗証"
+  delete: "[X]"
   activerecord: 
     models: 
       entry: "エントリ"

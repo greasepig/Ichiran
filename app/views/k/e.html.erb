@@ -7,7 +7,11 @@
 
 <ul>
 <% for entry in @entries %>
-  <li><%= entry.expression %></li>
+  <div id="entry_<%= entry.id %>">
+    <li><%= entry.expression %> <%= link_to_remote translate(:delete), :url => {:action => :delete,
+                     :id => entry.id},
+                     :update => "entry_#{entry.id}" %></li>
+  </div>
 <% end %> 
 </ul>
 
