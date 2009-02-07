@@ -26,15 +26,16 @@ namespace :deploy do
     run " /usr/bin/killall -USR1 dispatch.fcgi"
   end
  
-  desc "Move files after deployment"
-  task :after_deploy, :roles => [:app, :db, :web] do
-    run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/.htaccess" 
-    run "ln -s /home/greasepig/ichiran/current/public/ k" 
-  end
-
-
   [:start, :stop].each do |t|
     desc "#{t} task is a no-op for this case"
     task t, :roles => :app do ; end
   end
 end
+desc "Move files after deployment"
+task :move_files do
+    run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/.htaccess" 
+    run "ln -s /home/greasepig/ichiran/current/public/ /home/greasepig/daikoke.com/ichiran" 
+    run "ln -s /home/greasepig/ichiran/shared/production.sqlite3 /home/greasepig/ichiran/current/db/production.sqlite3" 
+end
+after :deploy, "move_files"
+after :deploy, "deploy:migrate"
