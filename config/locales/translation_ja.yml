@@ -1,0 +1,23 @@
+ja: 
+  activerecord: 
+    models: 
+      entry: "エントリ"
+    attributes: 
+      entry: 
+        expression: "表現"
+        reading: "レディング"
+        definition: "定義されています"
+        status: "地位"
+        created_at: "で作成"
+        updated_at: "で更新"
+  login: "ログイン"
+  application_name: "アプリケーション名"
+  railties: 
+    scaffold: 
+      edit: "編集"
+      back: "後ろの"
+      listing: "一覧"
+      new: "新しい"
+      editing: "編集"
+      show: "見せる"
+

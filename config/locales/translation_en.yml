@@ -1,0 +1,23 @@
+en: 
+  activerecord: 
+    models: 
+      entry: "Entry"
+    attributes: 
+      entry: 
+        expression: "Expression"
+        reading: "Reading"
+        definition: "Definition"
+        status: "Status"
+        created_at: "Created at"
+        updated_at: "Updated at"
+  application_name: "Application name"
+  login: "Login"
+  railties: 
+    scaffold: 
+      edit: "Edit"
+      back: "Back"
+      listing: "Listing"
+      new: "New"
+      editing: "Editing"
+      show: "Show"
+
