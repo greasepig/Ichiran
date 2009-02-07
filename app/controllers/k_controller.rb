@@ -22,8 +22,12 @@ class KController < ApplicationController
   end
 
   def e
-    Entry.create(params[:entry]) if params[:entry]
-    @entries = Entry.find(:all, :conditions => ['status = ?', Entry::STATUS_ACTIVE])
+    if params[:entry]
+      Entry.create(params[:entry]) if params[:entry]
+      redirect_to :action => :e
+    else
+      @entries = Entry.find(:all, :conditions => ['status = ?', Entry::STATUS_ACTIVE])
+    end
   end
 
   def g

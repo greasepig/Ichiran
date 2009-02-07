@@ -2,17 +2,13 @@
 <% form_tag(:action => :e) do %>
 <%= text_field :entry, :expression %>
 
-<%= submit_tag :add %>
+<%= submit_tag translate(:add) %>
 <% end %>
 
-<ul>
 <% for entry in @entries %>
-  <div id="entry_<%= entry.id %>">
-    <li><%= entry.expression %> <%= link_to_remote translate(:delete), :url => {:action => :delete,
+    <div class="entry" id="entry_<%= entry.id %>">&gt; <%= entry.expression %> <%= link_to_remote translate(:delete), :url => {:action => :delete,
                      :id => entry.id},
-                     :update => "entry_#{entry.id}" %></li>
-  </div>
+                     :update => "entry_#{entry.id}" %></div>
 <% end %> 
-</ul>
 
 <%= link_to translate(:logout), :action => :logout %>
