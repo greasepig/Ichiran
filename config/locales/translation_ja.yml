@@ -1,4 +1,8 @@
 ja: 
+  bad_login: "入力された情報に誤りがあります。"
+  unauthorized_action: "不正アクセス"
+  user: "ユーザ"
+  password: "暗証"
   activerecord: 
     models: 
       entry: "エントリ"
@@ -11,7 +15,7 @@ ja:
         created_at: "で作成"
         updated_at: "で更新"
   login: "ログイン"
-  application_name: "アプリケーション名"
+  application_name: "いちらん"
   railties: 
     scaffold: 
       edit: "編集"

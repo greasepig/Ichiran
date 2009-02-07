@@ -1,4 +1,8 @@
-en: 
+en:
+  bad_login: "Bad Login"
+  unauthorized_action: "Unauthorized Action"
+  user: "User"
+  password: "Password"
   activerecord: 
     models: 
       entry: "Entry"
@@ -10,7 +14,7 @@ en:
         status: "Status"
         created_at: "Created at"
         updated_at: "Updated at"
-  application_name: "Application name"
+  application_name: "Word List"
   login: "Login"
   railties: 
     scaffold: 
@@ -20,4 +24,3 @@ en:
       new: "New"
       editing: "Editing"
       show: "Show"
-

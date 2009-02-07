@@ -1,2 +1,12 @@
-<h1>K#e</h1>
-<p>Find me in app/views/k/e.html.erb</p>
+<h3><%= translate(:application_name) %></h3>
+<% form_tag(:action => :e) do %>
+<%= text_field :entry, :expression %>
+
+<%= submit_tag :add %>
+<% end %>
+
+<ul>
+<% for entry in @entries %>
+  <li><%= entry.expression %></li>
+<% end %> 
+</ul>

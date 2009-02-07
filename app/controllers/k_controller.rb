@@ -1,10 +1,15 @@
 class KController < ApplicationController
+  verify :session => :user,
+         :add_flash => {:message => I18n.t(:unauthorized_action)},
+         :redirect_to => {:action => :l},
+         :except => [:l, :authenticate]
   def l
   end
 
   def authenticate
     if authorized(params[:user], params[:password])
       set_login_cookie
+      session[:user] = params[:user]
       redirect_to :action => :e
     else
       flash[:notice] = t :bad_login
@@ -13,7 +18,7 @@ class KController < ApplicationController
   end
 
   def e
-    Entry.create(params[:expression]) if params[:expression]
+    Entry.create(params[:entry]) if params[:entry]
     @entries = Entry.find(:all, :conditions => ['status = ?', Entry::STATUS_ACTIVE])
   end
 
@@ -31,6 +36,7 @@ class KController < ApplicationController
 
   protected
   def authorized(u, p)
+    logger.debug("got #{u} and #{p}")
     u == 'greasepig' and p == 'preview'
   end
 
