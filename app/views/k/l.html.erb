@@ -1,0 +1,11 @@
+<h1><%= t :login %></h1>
+<% form_tag (:action => :authenticate) do %>
+<label for="user"><%= t :user %></label>
+<%= text_field_tag 'user', params[:user] %>
+
+<label for="password"><%= t :password %></label>
+<%= password_field_tag 'user', params[:user] %>
+
+<%= submit_tag t :login %>
+<% end %>
+

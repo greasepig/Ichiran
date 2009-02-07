@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  expression: MyString
+  reading: MyString
+  definition: MyString
+  status: 1
+
+two:
+  expression: MyString
+  reading: MyString
+  definition: MyString
+  status: 1

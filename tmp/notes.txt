@@ -1,0 +1,22 @@
+-both
+--sign-in
+--enter new
+--list
+
+-keitai
+(send only word and it's registered)
+
+-pc
+--lookup
+--delete
+--view all
+
+
+entry
+----------
+expression
+reading
+definition
+created_on
+status
+
