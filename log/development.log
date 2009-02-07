@@ -614,3 +614,113 @@ Processing KController#e (for 127.0.0.1 at 2009-02-07 14:05:29) [GET]
 Rendering template within layouts/application
 Rendering k/e
 Completed in 41ms (View: 22, DB: 2) | 200 OK [http://k.gigan/k/e]
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:20:17) [GET]
+  [4;36;1mEntry Load (1.6ms)[0m   [0;1mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 29ms (View: 16, DB: 2) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:21:12) [GET]
+--- 
+- - ja
+  - 0.3
+- - en
+  - 0.7
+- - en
+  - 1.0
+  [4;36;1mEntry Load (1.1ms)[0m   [0;1mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 30ms (View: 15, DB: 1) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:21:44) [GET]
+--- 
+- - ja
+  - 0.3
+- - en
+  - 0.7
+- - en
+  - 1.0
+  [4;35;1mEntry Load (7.8ms)[0m   [0mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 36ms (View: 15, DB: 8) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:22:42) [GET]
+--- 
+- - en
+  - 0.3
+- - ja
+  - 0.7
+- - en
+  - 1.0
+  [4;36;1mEntry Load (1.1ms)[0m   [0;1mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 29ms (View: 14, DB: 1) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:23:04) [GET]
+--- 
+- - en
+  - 1.0
+- - ja
+  - 0.7
+- - en
+  - 0.3
+  [4;35;1mEntry Load (1.1ms)[0m   [0mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 29ms (View: 14, DB: 1) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:23:06) [GET]
+--- 
+- - en
+  - 1.0
+- - ja
+  - 0.7
+- - en
+  - 0.3
+  [4;36;1mEntry Load (1.1ms)[0m   [0;1mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 29ms (View: 14, DB: 1) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:23:13) [GET]
+--- 
+- - en
+  - 1.0
+- - ja
+  - 0.7
+- - en
+  - 0.3
+  [4;36;1mEntry Load (1.4ms)[0m   [0;1mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 30ms (View: 15, DB: 1) | 200 OK [http://k.gigan/k/e]
+
+
+Processing KController#e (for 127.0.0.1 at 2009-02-07 16:23:50) [GET]
+--- 
+- - ja
+  - 1.0
+- - en
+  - 0.7
+- - en
+  - 0.3
+  [4;35;1mEntry Load (1.1ms)[0m   [0mSELECT * FROM "entries" WHERE (status = 1) [0m
+Rendering template within layouts/application
+Rendering k/e
+Completed in 30ms (View: 15, DB: 1) | 200 OK [http://k.gigan/k/e]

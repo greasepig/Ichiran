@@ -15,7 +15,29 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   def set_locale
     # if this is nil then I18n.default_locale will be used
-    I18n.locale = params[:locale] || request.preferred_language_from(AVAILABLE_LANGUAGES)
+    langs = accepted_languages
+    I18n.locale = params[:locale] || (langs and langs[0] ? langs[0][0] : nil)
+  end
+
+  def accepted_languages
+    # no language accepted
+    return [] if request.env["HTTP_ACCEPT_LANGUAGE"].nil?
+    
+    # parse Accept-Language
+    accepted = request.env["HTTP_ACCEPT_LANGUAGE"].split(",")
+    accepted = accepted.map { |l| l.strip.split(";") }
+    accepted = accepted.map { |l|
+      if (l.size == 2)
+        # quality present
+        [ l[0].split("-")[0].downcase, l[1].sub(/^q=/, "").to_f ]
+      else
+        # no quality specified =&gt; quality == 1
+        [ l[0].split("-")[0].downcase, 1.0 ]
+      end
+    }
+    
+    # sort by quality
+    accepted.sort { |l1, l2| l2[1] <=> l1[1] }
   end
 
 end
