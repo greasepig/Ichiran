@@ -7,7 +7,7 @@ set :deploy_via, :remote_cache
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
-set :deploy_to, "/home/greasepig/daikoke.com/k"
+set :deploy_to, "/home/greasepig/ichiran"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
@@ -28,7 +28,8 @@ namespace :deploy do
  
   desc "Move files after deployment"
   task :after_deploy, :roles => [:app, :db, :web] do
-    run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/" 
+    run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/.htaccess" 
+    run "ln -s /home/greasepig/ichiran/current/public/ k" 
   end
 
 

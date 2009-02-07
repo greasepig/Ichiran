@@ -4,6 +4,9 @@ class KController < ApplicationController
          :redirect_to => {:action => :l},
          :except => [:l, :authenticate]
   def l
+    if check_cookie
+      redirect_to :action => :e
+    end
   end
 
   def authenticate
@@ -34,14 +37,23 @@ class KController < ApplicationController
   def search
   end
 
+  def logout
+    reset_session
+    cookies[:login] = nil
+    redirect_to :action => :l
+  end
+
   protected
   def authorized(u, p)
-    logger.debug("got #{u} and #{p}")
     u == 'greasepig' and p == 'preview'
   end
 
   def set_login_cookie
     cookies[:login] = { :value => 'true', :expires => 2.weeks.since(Time.now)}
+  end
+
+  def check_cookie
+    cookies[:login] == 'true'
   end
 
   def delete_login_cookie(user_type)
