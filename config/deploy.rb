@@ -34,7 +34,7 @@ end
 desc "Move files after deployment"
 task :move_files do
     run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/.htaccess" 
-    run "ln -s /home/greasepig/ichiran/current/public/ /home/greasepig/daikoke.com/ichiran" 
+    run "ln -s /home/greasepig/ichiran/current/public /home/greasepig/daikoke.com/ichiran" 
     run "ln -s /home/greasepig/ichiran/shared/production.sqlite3 /home/greasepig/ichiran/current/db/production.sqlite3" 
 end
 after :deploy, "move_files"
