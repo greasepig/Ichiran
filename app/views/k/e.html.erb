@@ -10,9 +10,10 @@
       (<%= entry.reading %>)
       <%= entry.definition %>
       <% end %>
-<%= link_to_remote translate(:delete), :url => {:action => :delete,
+<%= link_to_remote translate(:delete), {:url => {:action => :delete,
                      :id => entry.id},
-                     :update => "entry_#{entry.id}" %>
+                     :update => "entry_#{entry.id}"},
+                     :href => url_for(:action => :delete, :id => entry.id) %>
 </div>
 <% end %> 
 
