@@ -1,4 +1,3 @@
-<h3><%= translate(:application_name) %></h3>
 <% form_tag(:action => :e) do %>
 <%= text_field :entry, :expression %>
 
@@ -6,9 +5,15 @@
 <% end %>
 
 <% for entry in @entries %>
-    <div class="entry" id="entry_<%= entry.id %>">&gt; <%= entry.expression %> <%= link_to_remote translate(:delete), :url => {:action => :delete,
+    <div class="entry <%= cycle('odd', 'even') %>" id="entry_<%= entry.id %>">&gt; <%= entry.expression %> 
+      <% if entry.reading %>
+      (<%= entry.reading %>)
+      <%= entry.definition %>
+      <% end %>
+<%= link_to_remote translate(:delete), :url => {:action => :delete,
                      :id => entry.id},
-                     :update => "entry_#{entry.id}" %></div>
+                     :update => "entry_#{entry.id}" %>
+</div>
 <% end %> 
 
 <%= link_to translate(:logout), :action => :logout %>

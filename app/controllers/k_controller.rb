@@ -26,7 +26,7 @@ class KController < ApplicationController
       Entry.create(params[:entry]) if params[:entry]
       redirect_to :action => :e
     else
-      @entries = Entry.find(:all, :conditions => ['status = ?', Entry::STATUS_ACTIVE])
+      @entries = Entry.find(:all, :conditions => ['status = ?', Entry::STATUS_ACTIVE], :order => 'created_at desc')
     end
   end
 
@@ -42,7 +42,11 @@ class KController < ApplicationController
       entry.destroy
     rescue ActiveRecord::RecordNotFound
     end
-    render :nothing => true, :layout => false
+    if request.xhr?
+      render :nothing => true, :layout => false
+    else
+      redirect_to :action => :e
+    end
   end
 
   def search
