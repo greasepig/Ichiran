@@ -23,7 +23,7 @@ set :use_sudo, false
 namespace :deploy do
   desc "Restarting rails by killing dispatch.fcgi"
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run " /usr/bin/killall -USR1 dispatch.fcgi"
+    run " /usr/bin/killall -q -USR1 dispatch.fcgi"
   end
  
   [:start, :stop].each do |t|
