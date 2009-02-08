@@ -9,7 +9,7 @@ class Entry < ActiveRecord::Base
   def add_def_and_reading
     if self.expression
       url = "http://www.aa.tufs.ac.jp/~jwb/cgi-bin/wwwjdic.cgi?1MUJ" + CGI.escape(self.expression) + "_3_10_5_ivory_black_0"
-      puts "trying #{url}"
+      logger.debug "trying #{url}"
       doc = Hpricot(open(url))
       labels = (doc/"label")
       for label in labels
