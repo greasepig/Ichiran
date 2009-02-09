@@ -3,6 +3,8 @@
 
 <%= submit_tag translate(:add) %>
 <% end %>
+<div>
+<%= link_to translate(:upload_multiple), :action => :upload_multi %>
 
 <% for entry in @entries %>
     <div class="entry <%= cycle('odd', 'even') %>" id="entry_<%= entry.id %>">&gt; <%= entry.expression %> 

@@ -19,7 +19,7 @@ class KController < ApplicationController
       session[:user] = params[:user]
       redirect_to :action => :e
     else
-      flash[:notice] = t :bad_login
+      flash[:notice] = I18n.t :bad_login
       render :action => :l
     end
   end
@@ -59,17 +59,24 @@ class KController < ApplicationController
       if request.xhr?
 	render :nothing => true, :layout => false
       else
-        flash[:notice] = t(:successful_upload)
+        flash[:notice] = I18n.t(:successful_upload)
 	redirect_to :action => :e
       end
     else
-      flash[:notice] = t(:upload_problem)
+      flash[:notice] = I18n.t(:upload_problem)
       e
       render :action => :e
     end
   end
 
   def upload_multi
+    entries = Entry.find(:all, :conditions => ['status = ? and reading is not null and definition is not null', Entry::STATUS_ACTIVE], :order => 'created_at desc')
+    count = 0
+    for entry in entries
+      count += 1 if entry.all_fields_available? and add_fact_to_anki(entry)
+    end
+    flash[:notice] = I18n.t(:multi_upload_message, :count => count)
+    redirect_to :action => :e
   end
 
   def search

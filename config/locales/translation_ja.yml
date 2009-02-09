@@ -30,3 +30,5 @@ ja:
   successful_upload: "効果"
   upload: "[U]"
   upload_problem: "アップロードはできませんでした"
+  multi_upload_message: "{{count}}個をアップロードしました"
+  upload_multiple: "複数"

@@ -30,3 +30,5 @@ en:
   successful_upload: "Successfully Uploaded Fact"
   upload: "[U]"
   upload_problem: "There was a problem uploading the fact"
+  multi_upload_message: "Uploaded {{count}} facts"
+  upload_multiple: "Upload Multiple"
