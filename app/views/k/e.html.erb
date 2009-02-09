@@ -17,5 +17,7 @@
                      :href => url_for(:action => :delete, :id => entry.id) %>
 </div>
 <% end %> 
-
+<script language="javascript">
+  $('entry_expression').focus();
+</script>
 <%= link_to translate(:logout), :action => :logout %>
