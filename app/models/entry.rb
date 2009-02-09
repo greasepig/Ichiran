@@ -14,15 +14,18 @@ class Entry < ActiveRecord::Base
       labels = (doc/"label")
       for label in labels
         next unless (label/"font")
-	logger.debug("trying #{label.inner_html}")
          
         if /(#{self.expression}) 【(.*?)】<\/font> (.*)$/.match(label.inner_html)
           logger.debug("***found a match in #{label.inner_html}")
           self.reading = $2
-          self.definition = $3
+          self.definition = $3.gsub(/<\/?[^>]*>/, "") if $3
           break
         end 
       end
     end
+  end
+
+  def all_fields_available?
+    !self.reading.blank? and !self.expression.blank? and !self.definition.blank?
   end
 end

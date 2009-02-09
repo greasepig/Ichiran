@@ -77,3 +77,7 @@ end
 
 AVAILABLE_LANGUAGES = ['en', 'ja']
 DEFAULT_USER = 'greasepig'
+ANKI_USERNAME = 'greasepig'
+ANKI_PASSWORD = 'tungsten'
+ANKI_HOST = 'anki.ichi2.net'
+USERAGENT = 'User-Agent: Mozilla/5.0 (X11; U; Linux i686; ja; rv:1.9.0.5) Gecko/2008121622 Ubuntu/8.10 (intrepid) Firefox/3.0.5'

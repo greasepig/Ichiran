@@ -27,3 +27,6 @@ en:
       show: "Show"
   logout: "Logout"
   add: "Add"
+  successful_upload: "Successfully Uploaded Fact"
+  upload: "[U]"
+  upload_problem: "There was a problem uploading the fact"

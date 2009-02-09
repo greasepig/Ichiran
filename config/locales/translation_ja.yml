@@ -27,4 +27,6 @@ ja:
       show: "見せる"
   logout: "ログアウト"
   add: "追加"
-
+  successful_upload: "効果"
+  upload: "[U]"
+  upload_problem: "アップロードはできませんでした"

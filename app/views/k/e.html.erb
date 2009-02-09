@@ -9,6 +9,7 @@
       <% if entry.reading %>
       (<%= entry.reading %>)
       <%= entry.definition %>
+      <%= link_to translate(:upload), :action => :upload, :id => entry %>
       <% end %>
 <%= link_to_remote translate(:delete), {:url => {:action => :delete,
                      :id => entry.id},
