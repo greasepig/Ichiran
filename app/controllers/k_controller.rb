@@ -64,8 +64,11 @@ class KController < ApplicationController
       end
     else
       flash[:notice] = t(:upload_problem)
-      render action => :e
+      render :action => :e
     end
+  end
+
+  def upload_multi
   end
 
   def search

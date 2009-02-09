@@ -7,9 +7,9 @@
 <% for entry in @entries %>
     <div class="entry <%= cycle('odd', 'even') %>" id="entry_<%= entry.id %>">&gt; <%= entry.expression %> 
       <% if entry.reading %>
+      <%= link_to translate(:upload), :action => :upload, :id => entry %>
       (<%= entry.reading %>)
       <%= entry.definition %>
-      <%= link_to translate(:upload), :action => :upload, :id => entry %>
       <% end %>
 <%= link_to_remote translate(:delete), {:url => {:action => :delete,
                      :id => entry.id},
