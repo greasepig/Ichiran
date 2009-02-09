@@ -64,6 +64,7 @@ class KController < ApplicationController
       end
     else
       flash[:notice] = t(:upload_problem)
+      e
       render :action => :e
     end
   end
