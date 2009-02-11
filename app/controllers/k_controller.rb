@@ -33,6 +33,12 @@ class KController < ApplicationController
     end
   end
 
+  def update
+    @entry = Entry.find(params[:id])
+    @entry.update_attributes(params[:entry])
+    render :partial => 'entry_form'
+  end
+
   def g
   end
 
@@ -73,7 +79,10 @@ class KController < ApplicationController
     entries = Entry.find(:all, :conditions => ['status = ? and reading is not null and definition is not null', Entry::STATUS_ACTIVE], :order => 'created_at desc')
     count = 0
     for entry in entries
-      count += 1 if entry.all_fields_available? and add_fact_to_anki(entry)
+      if entry.all_fields_available? and add_fact_to_anki(entry)
+        entry.destroy
+	count += 1 
+      end
     end
     flash[:notice] = I18n.t(:multi_upload_message, :count => count)
     redirect_to :action => :e

@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-
+  helper_method :keitai_browser
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'e7f22577ffc69aed98eb3ce0da3321b5'
@@ -40,4 +40,7 @@ class ApplicationController < ActionController::Base
     accepted.sort { |l1, l2| l2[1] <=> l1[1] }
   end
 
+  def keitai_browser
+    /Softbank/.match(request.env["HTTP_USER_AGENT"])
+  end
 end

@@ -1,0 +1,21 @@
+      &gt; <%= @entry.expression %> 
+      <% if @entry.reading %>
+      <%= link_to translate(:upload), :action => :upload, :id => @entry %>
+      (<%= @entry.reading %>)
+      <%= @entry.definition %>
+      <% end %>
+      <%= link_to_function '[^]', "$('entry_form_#{@entry.id}').toggle()" %>
+      <%= link_to_remote translate(:delete), {:url => {:action => :delete,
+                     :id => @entry.id},
+                     :update => "entry_#{@entry.id}"},
+                     :href => url_for(:action => :delete, :id => @entry.id) %>
+     <% unless keitai_browser %>
+      <div id="entry_form_<%= @entry.id %>" class="entry_form" style="display:none;">
+        <% form_remote_tag(:url => {:action => :update, :id => @entry.id}, :update => "entry_#{@entry.id}") do %>
+          <%= text_field :entry, :expression %>
+          <%= text_field :entry, :reading %>
+          <%= text_field :entry, :definition %>
+          <%= submit_tag translate(:save) %>
+        <% end %>
+      </div>
+      <% end %>

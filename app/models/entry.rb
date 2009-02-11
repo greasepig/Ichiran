@@ -15,10 +15,14 @@ class Entry < ActiveRecord::Base
       for label in labels
         next unless (label/"font")
          
-        if /(#{self.expression}) 【(.*?)】<\/font> (.*)$/.match(label.inner_html)
+        if /(#{self.expression}\b.*?)【(.*?)】<\/font> (.*)$/.match(label.inner_html)
           logger.debug("***found a match in #{label.inner_html}")
+          self.expression = $1
           self.reading = $2
-          self.definition = $3.gsub(/<\/?[^>]*>/, "") if $3
+          if $3
+	    self.definition = $3.gsub(/<\/?[^>]*>/, "")
+            self.definition = self.definition.gsub(/\(P\) ?/, "")
+          end
           break
         end 
       end

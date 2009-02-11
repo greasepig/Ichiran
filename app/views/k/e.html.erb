@@ -6,18 +6,10 @@
 <div>
 <%= link_to translate(:upload_multiple), :action => :upload_multi %>
 
-<% for entry in @entries %>
-    <div class="entry <%= cycle('odd', 'even') %>" id="entry_<%= entry.id %>">&gt; <%= entry.expression %> 
-      <% if entry.reading %>
-      <%= link_to translate(:upload), :action => :upload, :id => entry %>
-      (<%= entry.reading %>)
-      <%= entry.definition %>
-      <% end %>
-<%= link_to_remote translate(:delete), {:url => {:action => :delete,
-                     :id => entry.id},
-                     :update => "entry_#{entry.id}"},
-                     :href => url_for(:action => :delete, :id => entry.id) %>
-</div>
+<% for @entry in @entries %>
+  <div class="entry <%= cycle('odd', 'even') %>" id="entry_<%= @entry.id %>">
+    <%= render :partial => 'entry_form' %>
+  </div>
 <% end %> 
 <script language="javascript">
   $('entry_expression').focus();

@@ -34,13 +34,21 @@ color: #000099;
 div.entry a:hover {
 color: #ffffff;
 }
+div.entry_form {
+  border: 1px solid #aaaaaa;
+  width: 300px;
+  margin: 3px;
+}
+div.entry_form input{
+  margin: 3px;
+  display: block;
+}
 </style>
 </head>
 <body>
 
 <p style="color: green"><%= flash[:notice] %></p>
 <p style="color: red"><%= flash[:message] %></p>
-
 <%= yield  %>
 
 </body>
