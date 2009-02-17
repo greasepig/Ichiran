@@ -33,3 +33,6 @@ en:
   multi_upload_message: "Uploaded {{count}} facts"
   upload_multiple: "Upload Multiple"
   save: "Save"
+  meaning: "Meaning"
+  reading: "Reading"
+  expression: "Expression"

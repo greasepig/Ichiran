@@ -33,3 +33,6 @@ ja:
   multi_upload_message: "{{count}}個をアップロードしました"
   upload_multiple: "複数"
   save: "保存"
+  meaning: "意味"
+  reading: "読み"
+  expression: "表現"

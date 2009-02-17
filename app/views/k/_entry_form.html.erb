@@ -12,9 +12,9 @@
      <% unless keitai_browser %>
       <div id="entry_form_<%= @entry.id %>" class="entry_form" style="display:none;">
         <% form_remote_tag(:url => {:action => :update, :id => @entry.id}, :update => "entry_#{@entry.id}") do %>
-          <%= text_field :entry, :expression %>
-          <%= text_field :entry, :reading %>
-          <%= text_field :entry, :definition %>
+          <%= t(:expression) %><%= text_field :entry, :expression %>
+          <%= t(:reading) %><%= text_field :entry, :reading %>
+          <%= t(:meaning) %><%= text_field :entry, :definition %>
           <%= submit_tag translate(:save) %>
         <% end %>
       </div>
