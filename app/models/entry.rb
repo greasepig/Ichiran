@@ -22,6 +22,7 @@ class Entry < ActiveRecord::Base
           if $3
 	    self.definition = $3.gsub(/<\/?[^>]*>/, "")
             self.definition = self.definition.gsub(/\(P\) ?/, "")
+            self.definition = self.definition.gsub(/\(See.*?\) ?/, "")
           end
           break
         end 
