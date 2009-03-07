@@ -26,7 +26,14 @@ class KController < ApplicationController
 
   def e
     if params[:entry]
-      Entry.create(params[:entry]) if params[:entry]
+      entry = Entry.new(params[:entry]) 
+      if params[:jdef]
+        jdef = entry.get_j_def
+        logger.debug ("Got #{jdef}")
+        entry.definition = jdef if jdef
+        logger.debug ("entry.definition = #{entry.definition}")
+      end
+      entry.save
       redirect_to :action => :e
     else
       @entries = Entry.find(:all, :conditions => ['status = ?', Entry::STATUS_ACTIVE], :order => 'created_at desc')
@@ -39,7 +46,10 @@ class KController < ApplicationController
     render :partial => 'entry_form'
   end
 
-  def g
+  def try
+    @entry = Entry.find(params[:id])
+    @entry.get_j_def
+    redirect_to :action => :e
   end
 
   def delete

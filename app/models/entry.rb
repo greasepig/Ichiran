@@ -19,8 +19,8 @@ class Entry < ActiveRecord::Base
           logger.debug("***found a match in #{label.inner_html}")
           self.expression = $1
           self.reading = $2
-          if $3
-	    self.definition = $3.gsub(/<\/?[^>]*>/, "")
+          if $3 and !self.definition
+            self.definition = $3.gsub(/<\/?[^>]*>/, "")
             self.definition = self.definition.gsub(/\(P\) ?/, "")
             self.definition = self.definition.gsub(/\(See.*?\) ?/, "")
           end
@@ -28,6 +28,32 @@ class Entry < ActiveRecord::Base
         end 
       end
     end
+  end
+
+  def get_j_def
+    definition = nil
+    if self.expression
+      url = "http://www.sanseido.net/User/Dic/Index.aspx?TWords=" + CGI.escape(self.expression) + "&st=1&DailyJJ=checkbox"
+      data = "TWords=" + CGI.escape(self.expression) + "&st=1&DailyJJ=checkbox"
+      path = "/User/Dic/Index.aspx?#{data}"
+      http = Net::HTTP.new('www.sanseido.net', 80)
+      @headers = {
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'User-Agent' => USERAGENT
+      }
+      resp, data2 = http.get2(path, @headers)
+#      doc = Hpricot(open(url))
+      doc = Hpricot(resp.body)
+      div = doc.search("//div[@class='NetDicBody']")
+      definition = div.inner_html
+      definition = definition.sub(/.*?<br \/>/, "") # remove everything up to and including the first break
+      definition = definition.sub(/<br \/>.*$/m, "")  # remove the next break and everything after it
+      definition = definition.gsub(/<\/?[^>]*>/, "")  # remove all the tags
+      definition = definition.gsub(/〈\/?[^〉]*〉/, "") # remove the dictionary names
+      definition = definition.gsub(/[\n\r]/, "") # remove all line breaks
+      definition = definition.gsub(/^[\s]*\b/, "") # remove all spaces at the beginning
+    end
+    return definition
   end
 
   def all_fields_available?
