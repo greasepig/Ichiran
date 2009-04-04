@@ -25,6 +25,17 @@ class Entry < ActiveRecord::Base
             self.definition = self.definition.gsub(/\(See.*?\) ?/, "")
           end
           break
+        elsif  /(#{self.expression}\b.*?) <\/font> (.*)$/.match(label.inner_html)
+          # definition only (hiragana or katakana)
+          logger.debug("***found a match in #{label.inner_html}")
+          self.expression = $1
+          self.reading = ''
+          if $2 and !self.definition
+            self.definition = $2.gsub(/<\/?[^>]*>/, "")
+            self.definition = self.definition.gsub(/\(P\) ?/, "")
+            self.definition = self.definition.gsub(/\(See.*?\) ?/, "")
+            self.definition = self.definition.strip
+          end
         end 
       end
     end
@@ -57,6 +68,6 @@ class Entry < ActiveRecord::Base
   end
 
   def all_fields_available?
-    !self.reading.blank? and !self.expression.blank? and !self.definition.blank?
+    !self.expression.blank? and !self.definition.blank?
   end
 end

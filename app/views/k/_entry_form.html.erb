@@ -1,7 +1,7 @@
       &gt; <%= @entry.expression %> 
-      <% if @entry.reading %>
+      <% if @entry.definition %>
       <%= link_to translate(:upload), :action => :upload, :id => @entry %>
-      (<%= @entry.reading %>)
+      <% if !@entry.reading.blank? %>(<%= @entry.reading %>)<% end %>
       <%= @entry.definition %>
       <% end %>
       <%= link_to_function '[^]', "$('entry_form_#{@entry.id}').toggle()" %>
