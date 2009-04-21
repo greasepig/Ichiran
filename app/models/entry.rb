@@ -24,6 +24,7 @@ class Entry < ActiveRecord::Base
             self.definition = $3.gsub(/<\/?[^>]*>/, "")
             self.definition = self.definition.gsub(/\(P\) ?/, "")
             self.definition = self.definition.gsub(/\(See.*?\) ?/, "")
+            self.definition = self.definition.gsub(/\[.*?\] ?/, "")
           end
           break
         elsif  /(#{self.expression}\b.*?) <\/font> (.*)$/.match(label.inner_html)
@@ -35,6 +36,7 @@ class Entry < ActiveRecord::Base
             self.definition = $2.gsub(/<\/?[^>]*>/, "")
             self.definition = self.definition.gsub(/\(P\) ?/, "")
             self.definition = self.definition.gsub(/\(See.*?\) ?/, "")
+            self.definition = self.definition.gsub(/\[.*?\] ?/, "")
             self.definition = self.definition.strip
           end
         end 
