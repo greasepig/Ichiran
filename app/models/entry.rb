@@ -11,7 +11,8 @@ class Entry < ActiveRecord::Base
       url = "http://www.aa.tufs.ac.jp/~jwb/cgi-bin/wwwjdic.cgi?1MUJ" + CGI.escape(self.expression) + "_3_10_5_ivory_black_0"
       logger.debug "trying #{url}"
       doc = Hpricot(open(url))
-      labels = (doc/"label")
+#      labels = (doc/"label")
+      labels = (doc/"div")
       for label in labels
         next unless (label/"font")
          
