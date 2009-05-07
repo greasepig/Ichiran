@@ -2,7 +2,7 @@
 <%= text_field :entry, :expression %>
 
 <%= submit_tag translate(:add) %>
-<%= check_box_tag 'jdef' %>
+<%= check_box_tag 'jdef', true, true %>
 <% end %>
 <div>
 <%= link_to translate(:upload_multiple), :action => :upload_multi %>
