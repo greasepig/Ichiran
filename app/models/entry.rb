@@ -55,6 +55,7 @@ class Entry < ActiveRecord::Base
         'Content-Type' => 'application/x-www-form-urlencoded',
         'User-Agent' => USERAGENT
       }
+      logger.debug("trying #{url}")
       resp, data2 = http.get2(path, @headers)
 #      doc = Hpricot(open(url))
       doc = Hpricot(resp.body)

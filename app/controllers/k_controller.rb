@@ -86,7 +86,7 @@ class KController < ApplicationController
   end
 
   def upload_multi
-    entries = Entry.find(:all, :conditions => ['status = ? and reading is not null and definition is not null', Entry::STATUS_ACTIVE], :order => 'created_at desc')
+    entries = Entry.find(:all, :conditions => ['status = ? and definition is not null', Entry::STATUS_ACTIVE], :order => 'created_at desc')
     count = 0
     for entry in entries
       if entry.all_fields_available? and add_fact_to_anki(entry)
@@ -112,6 +112,7 @@ class KController < ApplicationController
     if !session[:anki_cookie]
       login_to_anki
     end
+    entry.reading ||= ''
     data = "Expression=#{CGI.escape(entry.expression)}&Meaning=#{CGI.escape(entry.definition)}&Reading=#{CGI.escape(entry.reading)}&action=Add"
     logger.debug("Using data #{data}")
     path = "/deck/edit"
