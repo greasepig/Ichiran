@@ -6,6 +6,8 @@ class Entry < ActiveRecord::Base
   STATUS_INACTIVE = 0
   before_create :add_def_and_reading
 
+  attr_accessor :duplicate
+
   def add_def_and_reading
     if self.expression
       url = "http://www.aa.tufs.ac.jp/~jwb/cgi-bin/wwwjdic.cgi?1MUJ" + CGI.escape(self.expression) + "_3_10_5_ivory_black_0"

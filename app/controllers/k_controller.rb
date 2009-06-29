@@ -73,11 +73,15 @@ class KController < ApplicationController
     if entry and entry.all_fields_available? and add_fact_to_anki(entry)
       entry.destroy
       if request.xhr?
-	render :nothing => true, :layout => false
+        render :nothing => true, :layout => false
       else
         flash[:notice] = I18n.t(:successful_upload)
-	redirect_to :action => :e
+        redirect_to :action => :e
       end
+    elsif entry.duplicate
+        entry.destroy
+        flash[:notice] = I18n.t(:entry_was_duplicate)
+        redirect_to :action => :e
     else
       flash[:notice] = I18n.t(:upload_problem)
       e
@@ -88,13 +92,17 @@ class KController < ApplicationController
   def upload_multi
     entries = Entry.find(:all, :conditions => ['status = ? and definition is not null', Entry::STATUS_ACTIVE], :order => 'created_at desc')
     count = 0
+    duplicates = 0
     for entry in entries
       if entry.all_fields_available? and add_fact_to_anki(entry)
         entry.destroy
-	count += 1 
+        count += 1 
+      elsif entry.duplicate
+        entry.destroy
+        duplicates += 1 
       end
     end
-    flash[:notice] = I18n.t(:multi_upload_message, :count => count)
+    flash[:notice] = I18n.t(:multi_upload_message, :count => count, :duplicates => duplicates)
     redirect_to :action => :e
   end
 
@@ -124,6 +132,7 @@ class KController < ApplicationController
     }
     resp, data2 = @http.post2(path, data, @headers)
     logger.debug("Got response code #{resp.code}")
+    entry.duplicate = true if /'Expression' is not unique/.match(resp.body)
     /Added OK!/.match(resp.body)
   end
 
