@@ -23,6 +23,7 @@ set :use_sudo, false
 namespace :deploy do
   desc "Restarting rails by killing dispatch.fcgi"
   task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{deploy_to}/current/tmp/restart.txt"
 #    run "/usr/bin/killall -q -USR1 dispatch.fcgi"
   end
  
@@ -33,8 +34,8 @@ namespace :deploy do
 end
 desc "Move files after deployment"
 task :move_files do
-    run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/.htaccess" 
-    run "ln -s /home/greasepig/ichiran/current/public /home/greasepig/daikoke.com/ichiran" 
+#    run "cp #{deploy_to}/current/tmp/.htaccess  #{deploy_to}/current/public/.htaccess" 
+#    run "ln -s /home/greasepig/ichiran/current/public /home/greasepig/daikoke.com/ichiran" 
     run "ln -s /home/greasepig/ichiran/shared/production.sqlite3 /home/greasepig/ichiran/current/db/production.sqlite3" 
 end
 
@@ -45,4 +46,4 @@ end
 
 after :deploy, :move_files
 after :deploy, "deploy:migrate"
-after :deploy, :restart_fcgi
+#after :deploy, :restart_fcgi
