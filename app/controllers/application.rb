@@ -13,11 +13,17 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   before_filter :set_locale
+  before_filter :log_browser
   def set_locale
     # if this is nil then I18n.default_locale will be used
     langs = accepted_languages
     I18n.locale = params[:locale] || (langs and langs[0] ? langs[0][0] : nil)
   end
+  protected :set_locale
+  def log_browser
+   logger.info "user agent = '#{request.env["HTTP_USER_AGENT"]}'" 
+  end
+  protected :log_browser
 
   def accepted_languages
     # no language accepted
