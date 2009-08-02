@@ -25,10 +25,19 @@ div.odd {
 div.entry {
   line-height: 1.2em;
 }
-input {
+.input-field, .submit-button {
   background: #000;
   color: #fff;
   border: 1px solid #ccc;
+}
+input, textarea {
+}
+input.input-field {
+  width: 200px;
+}
+textarea.input-field {
+  width: 250px;
+  height: 300px;
 }
 div.entry a {
 text-decoration: none;
@@ -42,7 +51,7 @@ div.entry_form {
   width: 300px;
   margin: 3px;
 }
-div.entry_form input{
+div.entry_form input, div.entry_form textarea{
   margin: 3px;
   display: block;
 }

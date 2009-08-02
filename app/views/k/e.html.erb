@@ -1,7 +1,7 @@
 <% form_tag(:action => :e) do %>
-<%= text_field :entry, :expression %>
+<%= text_field :entry, :expression, {:class => 'input-field'} %>
 
-<%= submit_tag translate(:add) %>
+<%= submit_tag translate(:add), :class => 'submit-button' %>
 <%= check_box_tag 'jdef', true, true %>
 <% end %>
 <div>

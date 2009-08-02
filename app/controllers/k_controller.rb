@@ -24,6 +24,10 @@ class KController < ApplicationController
     end
   end
 
+  def edit
+    @entry = Entry.find(:first, :conditions => ['id = ?', params[:id]])
+  end
+
   def e
     if params[:entry]
       entry = Entry.new(params[:entry]) 
@@ -43,7 +47,11 @@ class KController < ApplicationController
   def update
     @entry = Entry.find(params[:id])
     @entry.update_attributes(params[:entry])
-    render :partial => 'entry_form'
+    if request.xhr?
+      render :partial => 'entry_form'
+    else
+      redirect_to :action => :e
+    end
   end
 
   def try

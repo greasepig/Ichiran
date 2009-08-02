@@ -9,13 +9,14 @@
                      :id => @entry.id},
                      :update => "entry_#{@entry.id}"},
                      :href => url_for(:action => :delete, :id => @entry.id) %>
-     <% unless keitai_browser %>
+     <% unless keitai_browser or params[:action] == 'edit' %>
       <div id="entry_form_<%= @entry.id %>" class="entry_form" style="display:none;">
-        <% form_remote_tag(:url => {:action => :update, :id => @entry.id}, :update => "entry_#{@entry.id}") do %>
-          <%= t(:expression) %><%= text_field :entry, :expression %>
-          <%= t(:reading) %><%= text_field :entry, :reading %>
-          <%= t(:meaning) %><%= text_field :entry, :definition %>
-          <%= submit_tag translate(:save) %>
+        <% form_remote_tag(:url => {:action => :update, :id => @entry.id}, :update => "entry_#{@entry.id}",
+      :html => {:action => url_for({:action => :update, :id => @entry.id})}) do %>
+          <%= t(:expression) %><%= text_field :entry, :expression, {:class => 'input-field'} %>
+          <%= t(:reading) %><%= text_field :entry, :reading, {:class => 'input-field'} %>
+          <%= t(:meaning) %><%= text_area :entry, :definition, {:class => 'input-field'} %>
+          <%= submit_tag translate(:save), :class => 'submit-button' %>
         <% end %>
       </div>
       <% end %>
