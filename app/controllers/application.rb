@@ -47,6 +47,6 @@ class ApplicationController < ActionController::Base
   end
 
   def keitai_browser
-    /Softbank/.match(request.env["HTTP_USER_AGENT"])
+    /SoftBank/.match(request.env["HTTP_USER_AGENT"])
   end
 end
