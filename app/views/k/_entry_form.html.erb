@@ -14,7 +14,7 @@
                      :update => "entry_#{@entry.id}"},
                      :href => url_for(:action => :delete, :id => @entry.id) %>
      <% unless keitai_browser or params[:action] == 'edit' %>
-      <div id="entry_form_<%= @entry.id %>" class="entry_form" style="display:none;">
+      <div id="entry_form_<%= @entry.id %>" class="entry_form"<% unless params[:action] == 'edit' %> style="display:none;"<% end %>>
         <% form_remote_tag(:url => {:action => :update, :id => @entry.id}, :update => "entry_#{@entry.id}",
       :html => {:action => url_for({:action => :update, :id => @entry.id})}) do %>
           <%= t(:expression) %><%= text_field :entry, :expression, {:class => 'input-field'} %>
